@@ -31,54 +31,55 @@ int crossProduct(double v1[3], double v2[3]) {
 }
 
 int main(void) {
-    char prodChoice; // operation choice
+    char choice; // operation choice
     double vecA[3]; // A
     double vecB[3]; // B
-    bool cont = true;
-    printf("Welcome to the product calculator!\n");
-    while (cont) {
+    bool running = true;
+    printf("Welcome to the Vector Product Calculator!\n");
+    printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n");
+
+    while (running) {
         printf("Choose (D)ot product, (C)ross product, or (Q)uit: ");
-        scanf(" %c", &prodChoice);
+        scanf(" %c", &choice);
         
-        // Pot product
-        if ((prodChoice == 'D') || (prodChoice == 'd')) { 
-            printf("Define the x, y, and z components of the first vector:\n");
-            for (int i=0; i<3; i++) {
-                scanf("%lf", &vecA[i]);
-            }
-            printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
-            
-            printf("Define the x, y, and z components of the second vector:\n");
-            for (int i=0; i<3; i++) {
-                scanf("%lf", &vecB[i]);
-            }
-            printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
+        switch (choice) {
+        // Dot product
+            case 'D': case 'd':
+                printf("Define the x, y, and z components of the first vector:\n");
+                for (int i=0; i<3; i++) {
+                    scanf("%lf", &vecA[i]);
+                }
+                printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
+                
+                printf("Define the x, y, and z components of the second vector:\n");
+                for (int i=0; i<3; i++) {
+                    scanf("%lf", &vecB[i]);
+                }
+                printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
 
-            dotProduct(vecA, vecB);
-        }
-        // Cross product
-        else if ((prodChoice == 'C') || (prodChoice == 'c')) {
-            printf("Define the x, y, and z components of the first vector.\n");
-            printf("(Note: The vector order matters for cross product (right hand rule).)\n");
-            for (int i=0; i<3; i++) {
-                scanf("%lf", &vecA[i]);
-            }
-            printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
-            
-            printf("Define the x, y, and z components of the second vector.\n");
-            for (int i=0; i<3; i++) {
-                scanf("%lf", &vecB[i]);
-            }
-            printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
+                dotProduct(vecA, vecB);
+                break;
+            case 'C': case 'c':
+                printf("Define the x, y, and z components of the first vector.\n");
+                printf("(Note: The vector order matters for cross product (right hand rule).)\n");
+                for (int i=0; i<3; i++) {
+                    scanf("%lf", &vecA[i]);
+                }
+                printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
+                
+                printf("Define the x, y, and z components of the second vector.\n");
+                for (int i=0; i<3; i++) {
+                    scanf("%lf", &vecB[i]);
+                }
+                printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
 
-            crossProduct(vecA, vecB);
-        } 
-        // Quit program
-        else if ((prodChoice == 'Q') || (prodChoice == 'q')) {
-            cont = false;
-        }
-        else {
-            printf("Invalid option. Try again.\n"); // input validation
+                crossProduct(vecA, vecB);
+                break;
+            case 'Q': case 'q':
+                running = false;
+                 break;
+            default:
+                printf("Invalid option. Try again.\n"); // input validation
         }
     }
     return 0;
