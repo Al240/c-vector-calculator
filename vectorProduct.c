@@ -43,7 +43,7 @@ int main(void) {
         scanf(" %c", &choice);
         
         switch (choice) {
-        // Dot product
+            // Dot Product
             case 'D': case 'd':
                 printf("Define the x, y, and z components of the first vector:\n");
                 for (int i=0; i<3; i++) {
@@ -59,6 +59,7 @@ int main(void) {
 
                 dotProduct(vecA, vecB);
                 break;
+            // Cross Product
             case 'C': case 'c':
                 printf("Define the x, y, and z components of the first vector.\n");
                 printf("(Note: The vector order matters for cross product (right hand rule).)\n");
@@ -75,9 +76,10 @@ int main(void) {
 
                 crossProduct(vecA, vecB);
                 break;
+            // Quit
             case 'Q': case 'q':
                 running = false;
-                 break;
+                break;
             default:
                 printf("Invalid option. Try again.\n"); // input validation
         }
