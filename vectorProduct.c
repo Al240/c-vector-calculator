@@ -53,13 +53,13 @@ int main(void) {
     printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n");
 
     while (running) {
-        printf("--- MAIN MENU ---\n");
+        printf("-------- MAIN MENU --------\n");
         printf("(D)ot Product\n");
         printf("(C)ross Product\n");
         printf("(Q)uit Program\n");
         printf("Choose an option: ");
         scanf(" %c%*c", &choice);
-        printf("-----------------\n\n");
+        printf("- VECTOR PRODUCT CALC 1.1 -\n\n");
         
         switch (choice) {
             // Dot Product
