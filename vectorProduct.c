@@ -30,6 +30,20 @@ int crossProduct(double v1[3], double v2[3]) {
     printf("%.3f>\n\n", cProduct[2]); // print final z component
 }
 
+void getVector(double vecA, double vecB) {
+    printf("Define the x, y, and z components of the first vector:\n");
+    for (int i=0; i<3; i++) {
+        scanf("%lf", &vecA[i]);
+    }
+    printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
+                
+    printf("Define the x, y, and z components of the second vector:\n");
+    for (int i=0; i<3; i++) {
+        scanf("%lf", &vecB[i]);
+    }
+    printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
+}
+
 int main(void) {
     char choice; // operation choice
     double vecA[3]; // A
@@ -45,35 +59,12 @@ int main(void) {
         switch (choice) {
             // Dot Product
             case 'D': case 'd':
-                printf("Define the x, y, and z components of the first vector:\n");
-                for (int i=0; i<3; i++) {
-                    scanf("%lf", &vecA[i]);
-                }
-                printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
-                
-                printf("Define the x, y, and z components of the second vector:\n");
-                for (int i=0; i<3; i++) {
-                    scanf("%lf", &vecB[i]);
-                }
-                printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
-
+                getVector(vecA, vecB);
                 dotProduct(vecA, vecB);
                 break;
             // Cross Product
             case 'C': case 'c':
-                printf("Define the x, y, and z components of the first vector.\n");
-                printf("(Note: The vector order matters for cross product (right hand rule).)\n");
-                for (int i=0; i<3; i++) {
-                    scanf("%lf", &vecA[i]);
-                }
-                printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
-                
-                printf("Define the x, y, and z components of the second vector.\n");
-                for (int i=0; i<3; i++) {
-                    scanf("%lf", &vecB[i]);
-                }
-                printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
-
+                getVector(vecA, vecB);
                 crossProduct(vecA, vecB);
                 break;
             // Quit
