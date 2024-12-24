@@ -30,18 +30,18 @@ int crossProduct(double v1[3], double v2[3]) {
     printf("%.3f>\n\n", cProduct[2]); // print final z component
 }
 
-void getVector(double vecA, double vecB) {
+int getVector(double v1[3], double v2[3]) {
     printf("Define the x, y, and z components of the first vector:\n");
     for (int i=0; i<3; i++) {
-        scanf("%lf", &vecA[i]);
+        scanf("%lf", &v1[i]);
     }
-    printf("Vector A: <%.3f, %.3f, %.3f>\n\n", vecA[0], vecA[1], vecA[2]);
+    printf("Vector A: <%.3f, %.3f, %.3f>\n\n", v1[0], v1[1], v1[2]);
                 
     printf("Define the x, y, and z components of the second vector:\n");
     for (int i=0; i<3; i++) {
-        scanf("%lf", &vecB[i]);
+        scanf("%lf", &v2[i]);
     }
-    printf("Vector B: <%.3f, %.3f, %.3f>\n\n", vecB[0], vecB[1], vecB[2]);
+    printf("Vector B: <%.3f, %.3f, %.3f>\n\n", v2[0], v2[1], v2[2]);
 }
 
 int main(void) {
@@ -53,8 +53,12 @@ int main(void) {
     printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n");
 
     while (running) {
-        printf("Choose (D)ot product, (C)ross product, or (Q)uit: ");
-        scanf(" %c", &choice);
+        printf("--- MAIN MENU ---\n");
+        printf("(D)ot Product\n");
+        printf("(C)ross Product\n");
+        printf("(Q)uit Program\n");
+        printf("Choose an option: ");
+        scanf("%c", &choice);
         
         switch (choice) {
             // Dot Product
