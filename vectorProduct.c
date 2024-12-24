@@ -59,6 +59,7 @@ int main(void) {
         printf("(Q)uit Program\n");
         printf("Choose an option: ");
         scanf("%c", &choice);
+        printf("-----------------\n\n");
         
         switch (choice) {
             // Dot Product
