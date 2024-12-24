@@ -58,7 +58,7 @@ int main(void) {
         printf("(C)ross Product\n");
         printf("(Q)uit Program\n");
         printf("Choose an option: ");
-        scanf("%c", &choice);
+        scanf(" %c%*c", &choice);
         printf("-----------------\n\n");
         
         switch (choice) {
@@ -78,6 +78,7 @@ int main(void) {
                 break;
             default:
                 printf("Invalid option. Try again.\n"); // input validation
+                while ((getchar()) != '\n') {}
         }
     }
     return 0;
