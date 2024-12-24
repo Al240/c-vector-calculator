@@ -50,7 +50,7 @@ int main(void) {
     double vecB[3]; // B
     bool running = true;
     printf("Welcome to the Vector Product Calculator!\n");
-    printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n");
+    printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n\n");
 
     while (running) {
         printf("-------- MAIN MENU --------\n");
@@ -74,6 +74,7 @@ int main(void) {
                 break;
             // Quit
             case 'Q': case 'q':
+                printf("Quitting...");
                 running = false;
                 break;
             default:
