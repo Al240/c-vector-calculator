@@ -1,10 +1,17 @@
 /***  
-Vector Product Calculator
+Vector Calculator
 By: Al240 & stereoscoped
 12/19/2024
+
+todo:
+- improve getVector data validation
+- support expressions for component input
+- support 'pi', 'ln(val)', 'log(val)'
 ***/
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 int addSub(double v1[3], double v2[3]) {
@@ -28,7 +35,7 @@ int addSub(double v1[3], double v2[3]) {
 
             default:
                 printf("Invalid operation. Please choose + or - : "); // input validation
-                while ((getchar()) != '\n') {}
+                while ((getchar()) != '\n') {} // clear input buffer
         }
     }
 }
@@ -60,13 +67,25 @@ int getMagUnit(double v1[3]) {
 }
 
 int getVector(double v1[3], char vecLabel) {
-    printf("Define the x, y, and z components of the vector %c\n", vecLabel);
-    printf("i.e. 1 2.40 3 --> results in Vector %c = <1, 2.4, 3>: ", vecLabel);
+    char currComp = 'x';
+    printf("Define the x, y, and z components of the vector %c.\n", vecLabel);
     for (int i=0; i<3; i++) {
-        scanf(" %lf", &v1[i]);
+        int valInput = 0;
+        while (!valInput) {
+            printf("%c: ", currComp);
+            valInput = scanf("%lf", &v1[i]);
+            if (valInput) {
+                currComp++; // x -> y, y -> z
+                while ((getchar()) != '\n') {} // clear input buffer
+                break;
+            }
+            else {
+                printf("Invalid input, please try again. Component must be a real number.\n");
+                while ((getchar()) != '\n') {} // clear input buffer
+            }
+        }
     }
     printf("Vector %c: <%.3f, %.3f, %.3f>\n\n", vecLabel, v1[0], v1[1], v1[2]);
-    while ((getchar()) != '\n') {}
 }
 
 int main(void) {
@@ -76,7 +95,7 @@ int main(void) {
     bool running = true;
     printf("Welcome to the Vector Calculator!\n");
     printf("***Calculator supports up to 3-dimensional vectors***\n");
-    printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n\n");
+    printf("If you find any errors, please report them at https://github.com/Al240/c-vector-calculator\n\n");
 
     while (running) {
         printf("-------- MAIN MENU --------\n");
@@ -86,8 +105,8 @@ int main(void) {
         printf("(M)agnitude & Unit Vector\n");
         printf("(Q)uit Program\n");
         printf("\nChoose an option: ");
-        scanf(" %c%*c", &choice);
-        printf("- VECTOR PRODUCT CALC 1.1 -\n\n");
+        scanf("%c%*c", &choice);
+        printf("- VECTOR PRODUCT CALC 1.2 -\n\n");
         
         switch (choice) {
             // Add or Subtract
@@ -120,8 +139,7 @@ int main(void) {
                 break;
             default:
                 printf("Invalid option. Try again.\n"); // input validation
-                while ((getchar()) != '\n') {}
+                while ((getchar()) != '\n') {} // clear input buffer
         }
     }
-    return 0;
 }
