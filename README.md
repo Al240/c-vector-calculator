@@ -1,2 +1,8 @@
-# Vector Product Calculator
-Simple C program that calculates the dot and/or cross product between 2 vectors.
+# Vector Calculator
+Simple C program that can perform various operations on vectors (1 to 3-dimensional).
+
+Currently Supported Operations:
+ - Addition and Subtraction
+ - Dot Product
+ - Cross Product
+ - Find Magnitude/Unit Vector
