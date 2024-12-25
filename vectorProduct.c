@@ -5,6 +5,33 @@ By: Al240 & stereoscoped
 ***/
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
+
+int addSub(double v1[3], double v2[3]) {
+    char opChoice;
+    bool inProgress = true;
+    printf("Add (+) or Subtract (-)? ");
+
+    while (inProgress) {
+        scanf(" %c%*c", &opChoice);
+        switch (opChoice) {
+            // Addition
+            case '+' : case 'A' : case 'a' :
+                printf("\nA + B = <%.3f, %.3f, %.3f>\n\n", (v1[0]+v2[0]), (v1[1]+v2[1]), (v1[2]+v2[2]));
+                inProgress = false;
+                break;
+            // Subtraction
+            case '-' : case 'S' : case 's' :
+                printf("\nA - B = <%.3f, %.3f, %.3f>\n\n", (v1[0]-v2[0]), (v1[1]-v2[1]), (v1[2]-v2[2]));
+                inProgress = false;
+                break;
+
+            default:
+                printf("Invalid operation. Please choose + or - : "); // input validation
+                while ((getchar()) != '\n') {}
+        }
+    }
+}
 
 int dotProduct(double v1[3], double v2[3]) {
     double dProduct = ((v1[0]*v2[0])+(v1[1]*v2[1])+(v1[2]*v2[2])); // (a1b1)+(a2b2)+(a3b3)
@@ -23,25 +50,23 @@ int crossProduct(double v1[3], double v2[3]) {
         v1[2] * v2[0], v1[0] * v2[2],
         v1[0] * v2[1], v1[1] * v2[0]);
     printf("\nFinal Answer:");
-    printf("\nA x B = <");
-    for (int i=0; i<2; i++) {
-        printf("%.3f, ", cProduct[i]); // print final x & y component
-    }
-    printf("%.3f>\n\n", cProduct[2]); // print final z component
+    printf("\nA x B = <%.3f, %.3f, %.3f>\n\n", cProduct[0], cProduct[1], cProduct[2]);
 }
 
-int getVector(double v1[3], double v2[3]) {
-    printf("Define the x, y, and z components of the first vector:\n");
+int getMagUnit(double v1[3]) {
+    double vMag = sqrt((v1[0]*v1[0])+(v1[1]*v1[1])+(v1[2]*v1[2]));
+    printf("Magnitude ||v||: %.3f\n", vMag);
+    printf("Unit Vector v/||v||: <%.3f, %.3f, %.3f>\n\n", v1[0]/vMag, v1[1]/vMag, v1[2]/vMag);
+}
+
+int getVector(double v1[3], char vecLabel) {
+    printf("Define the x, y, and z components of the vector %c\n", vecLabel);
+    printf("i.e. 1 2.40 3 --> results in Vector %c = <1, 2.4, 3>: ", vecLabel);
     for (int i=0; i<3; i++) {
-        scanf("%lf", &v1[i]);
+        scanf(" %lf", &v1[i]);
     }
-    printf("Vector A: <%.3f, %.3f, %.3f>\n\n", v1[0], v1[1], v1[2]);
-                
-    printf("Define the x, y, and z components of the second vector:\n");
-    for (int i=0; i<3; i++) {
-        scanf("%lf", &v2[i]);
-    }
-    printf("Vector B: <%.3f, %.3f, %.3f>\n\n", v2[0], v2[1], v2[2]);
+    printf("Vector %c: <%.3f, %.3f, %.3f>\n\n", vecLabel, v1[0], v1[1], v1[2]);
+    while ((getchar()) != '\n') {}
 }
 
 int main(void) {
@@ -49,28 +74,44 @@ int main(void) {
     double vecA[3]; // A
     double vecB[3]; // B
     bool running = true;
-    printf("Welcome to the Vector Product Calculator!\n");
+    printf("Welcome to the Vector Calculator!\n");
+    printf("***Calculator supports up to 3-dimensional vectors***\n");
     printf("If you find any errors, please report them at https://github.com/Al240/c-vector-product-calc\n\n");
 
     while (running) {
         printf("-------- MAIN MENU --------\n");
+        printf("(A)ddition and Subtraction\n");
         printf("(D)ot Product\n");
         printf("(C)ross Product\n");
+        printf("(M)agnitude & Unit Vector\n");
         printf("(Q)uit Program\n");
-        printf("Choose an option: ");
+        printf("\nChoose an option: ");
         scanf(" %c%*c", &choice);
         printf("- VECTOR PRODUCT CALC 1.1 -\n\n");
         
         switch (choice) {
+            // Add or Subtract
+            case 'A': case 'a':
+                getVector(vecA, 'A');
+                getVector(vecB, 'B');
+                addSub(vecA, vecB);
+                break;
             // Dot Product
             case 'D': case 'd':
-                getVector(vecA, vecB);
+                getVector(vecA, 'A');
+                getVector(vecB, 'B');
                 dotProduct(vecA, vecB);
                 break;
             // Cross Product
             case 'C': case 'c':
-                getVector(vecA, vecB);
+                getVector(vecA, 'A');
+                getVector(vecB, 'B');
                 crossProduct(vecA, vecB);
+                break;
+            // Magnitude and Unit Vector
+            case 'M': case 'm':
+                getVector(vecA, 'v');
+                getMagUnit(vecA);
                 break;
             // Quit
             case 'Q': case 'q':
